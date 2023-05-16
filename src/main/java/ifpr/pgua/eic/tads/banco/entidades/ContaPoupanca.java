@@ -22,4 +22,15 @@ public class ContaPoupanca extends Conta {
         this.txRendimento = txRendimento;
     }
 
+    @Override
+    public String gerarExtrato() {
+        String texto = "";
+
+        texto = super.gerarExtrato();
+
+        texto += " txRendimento : " + txRendimento + " Rendimento: " + rendimento;
+
+        return texto;
+    }
+
 }

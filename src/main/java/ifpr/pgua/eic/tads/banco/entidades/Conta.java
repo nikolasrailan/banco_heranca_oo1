@@ -87,7 +87,7 @@ public class Conta {
 
     }
 
-    public String mostrarSaldo() {
+    public String gerarExtrato() {
         String texto = "";
 
         texto = "Agência: " + agencia +
