@@ -3,15 +3,19 @@ package ifpr.pgua.eic.tads.banco;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ifpr.pgua.eic.tads.banco.controle.Banco;
+import ifpr.pgua.eic.tads.banco.entidades.Conta;
+import ifpr.pgua.eic.tads.banco.entidades.Pessoa;
+
 public class App {
 
     static Scanner teclado = new Scanner(System.in);
-    static ContaBancaria conta;
+    static Conta conta;
 
     static Banco banco = new Banco("TADSBank");
 
-    static String imprimirMenu(){
-        String str="";
+    static String imprimirMenu() {
+        String str = "";
         str += "###----###\n";
         str += "1 - Cadastrar conta\n";
         str += "2 - Sacar\n";
@@ -26,8 +30,7 @@ public class App {
         return str;
     }
 
-
-    static void cadastrarCliente(){
+    static void cadastrarCliente() {
         String nome;
         String cpf;
         int idade;
@@ -45,7 +48,7 @@ public class App {
         banco.criarCliente(nome, cpf, idade, salario);
     }
 
-    static void buscarCliente(){
+    static void buscarCliente() {
         String cpf;
 
         System.out.println("Digite o cpf:");
@@ -53,27 +56,26 @@ public class App {
 
         Pessoa cliente = banco.buscarCliente(cpf);
 
-        
-        if(cliente != null){
+        if (cliente != null) {
             System.out.println(cliente);
-        }else{
+        } else {
             System.out.println("Cliente não encontrado!");
         }
     }
 
-    static void listarClientes(){
+    static void listarClientes() {
         System.out.println("####Lista de Clientes####");
         System.out.println(banco.listarClientes());
         System.out.println("######");
     }
 
-    static void criarConta(){
-        
+    static void criarConta() {
+
         String cpf;
         String numero;
         String agencia;
         double saldoInicial;
-        
+
         System.out.println("Digite o cpf do cliente:");
         cpf = teclado.nextLine();
         System.out.println("Digite o número da conta:");
@@ -82,106 +84,100 @@ public class App {
         agencia = teclado.nextLine();
 
         Pessoa pessoa = banco.buscarCliente(cpf);
-        if(pessoa != null){
-            conta = new ContaBancaria(agencia,numero,pessoa);
+        if (pessoa != null) {
+            conta = new Conta(agencia, numero, pessoa);
 
             System.out.println("************");
-            
-            //adicionando um conta na coleção de contas
+
+            // adicionando um conta na coleção de contas
             banco.criarConta(conta);
-    
-        }else{
+
+        } else {
             System.out.println("Cliente não encontrado! Conta não criada!");
         }
-        
 
     }
 
-    static void sacar(){
+    static void sacar() {
         double valor;
         String numero;
         String agencia;
-        
 
         System.out.println("Digite o numero da conta:");
         numero = teclado.nextLine();
-        
+
         System.out.println("Digite o numero da agencia:");
         agencia = teclado.nextLine();
-        
 
         System.out.println("Digite um valor:");
         valor = teclado.nextDouble();
-
 
         System.out.println(banco.sacar(numero, agencia, valor));
 
         System.out.println("************");
     }
 
-    static void depositar(){
+    static void depositar() {
         double valor;
         String numero;
         String agencia;
-        
 
         System.out.println("Digite o numero da conta:");
         numero = teclado.nextLine();
-        
+
         System.out.println("Digite o numero da agencia:");
         agencia = teclado.nextLine();
-        
 
         System.out.println("Digite um valor:");
         valor = teclado.nextDouble();
 
-        String retorno = banco.depositar(numero,agencia,valor);
+        String retorno = banco.depositar(numero, agencia, valor);
         System.out.println(retorno);
         System.out.println("************");
     }
 
-    static void mostrarDados(){
-        
+    static void mostrarDados() {
+
         System.out.println(banco.relatorio());
     }
 
     public static void main(String[] args) {
 
-        int opcao=0;
+        int opcao = 0;
 
-        do{
+        do {
             System.out.println(imprimirMenu());
             opcao = teclado.nextInt();
             teclado.nextLine();
 
-            switch(opcao){
+            switch (opcao) {
                 case 1:
                     criarConta();
-                break;
+                    break;
                 case 2:
                     sacar();
-                    
-                break;
+
+                    break;
                 case 3:
                     depositar();
-                break;
+                    break;
                 case 4:
                     mostrarDados();
-                break;
+                    break;
                 case 5:
                     cadastrarCliente();
-                break;
+                    break;
                 case 6:
                     buscarCliente();
-                break;
+                    break;
                 case 7:
                     listarClientes();
-                break;
+                    break;
                 default:
-                    if(opcao != 0){
+                    if (opcao != 0) {
                         System.out.println("Opção inválida!!");
                     }
             }
-        }while(opcao != 0);
+        } while (opcao != 0);
     }
 }

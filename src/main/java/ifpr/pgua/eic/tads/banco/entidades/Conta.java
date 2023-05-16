@@ -1,85 +1,85 @@
-package ifpr.pgua.eic.tads.banco;
+package ifpr.pgua.eic.tads.banco.entidades;
 
 //importações
 
-public class ContaBancaria{
+public class Conta {
 
-    //atributos
+    // atributos
     private String agencia;
     private String numero;
-    private double saldo=0;
+    private double saldo = 0;
     private Pessoa cliente;
 
-
-
-    public ContaBancaria(String agencia, String numero, Pessoa cliente){
+    public Conta(String agencia, String numero, Pessoa cliente) {
         this.agencia = agencia;
         this.numero = numero;
         this.cliente = cliente;
     }
 
-    public ContaBancaria(String numero, Pessoa cliente){
+    public Conta(String numero, Pessoa cliente) {
         this.agencia = "1234";
         this.numero = numero;
         this.cliente = cliente;
     }
 
-    public ContaBancaria(String agencia, String numero, Pessoa cliente, double saldo){
+    public Conta(String agencia, String numero, Pessoa cliente, double saldo) {
         this.agencia = agencia;
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = saldo;
     }
 
-    public void setNumero(String numero){
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public String getNumero(){
+    public String getNumero() {
         return numero;
     }
 
-    /*public void setAgencia(String valor){
-        agencia = valor;
-    }*/
+    /*
+     * public void setAgencia(String valor){
+     * agencia = valor;
+     * }
+     */
 
-    public String getAgencia(){
+    public String getAgencia() {
         return agencia;
     }
 
-    /*public void setNomeCliente(String valor){
-        nomeCliente = valor;
-    }*/
+    /*
+     * public void setNomeCliente(String valor){
+     * nomeCliente = valor;
+     * }
+     */
 
-    public Pessoa getCliente(){
+    public Pessoa getCliente() {
         return cliente;
     }
 
-    public double getSaldo(){
+    public double getSaldo() {
         return saldo;
     }
 
+    // metodos
+    public String depositar(double valor) {
 
-
-    //metodos
-    String depositar(double valor){
-
-        if(valor < 0){
+        if (valor < 0) {
             return "Valor inválido!";
         }
         saldo = saldo + valor;
         return "ok";
     }
 
-    String sacar(double valor){
-        if(valor < 0){
+    public String sacar(double valor) {
+        if (valor < 0) {
             return "Valor inválido!";
-            //return false;
+            // return false;
         }
-        if(valor > saldo){
+        if (valor > saldo) {
             return "Saldo insuficiente!";
-            //System.out.println("Impossível sacar!!");
-            //return false;
+            // System.out.println("Impossível sacar!!");
+            // return false;
         }
 
         saldo = saldo - valor;
@@ -87,8 +87,8 @@ public class ContaBancaria{
 
     }
 
-    String mostrarSaldo(){
-        String texto="";
+    public String mostrarSaldo() {
+        String texto = "";
 
         texto = "Agência: " + agencia +
                 " Número: " + numero +

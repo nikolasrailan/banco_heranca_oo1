@@ -1,25 +1,24 @@
-package ifpr.pgua.eic.tads.banco;
+package ifpr.pgua.eic.tads.banco.entidades;
 
 public class Pessoa {
-    
+
     private String nome;
     private String cpf;
     private int idade;
     private double salario;
 
-    public Pessoa(String nome, String cpf, int idade, double salario){
+    public Pessoa(String nome, String cpf, int idade, double salario) {
         this.nome = nome;
         this.cpf = cpf;
         this.idade = idade;
         this.salario = salario;
     }
 
-
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -47,14 +46,12 @@ public class Pessoa {
         this.salario = salario;
     }
 
-    public String toString(){
-        return "Nome:"+nome+
-        " Cpf:" +cpf+
-        " Idade:"+idade+
-        " Salário: "+salario;
+    public String toString() {
+        return "Nome:" + nome +
+                " Cpf:" + cpf +
+                " Idade:" + idade +
+                " Salário: " + salario;
 
     }
-
-    
 
 }
