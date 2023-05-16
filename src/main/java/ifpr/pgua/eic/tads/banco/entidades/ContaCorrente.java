@@ -15,4 +15,16 @@ public class ContaCorrente extends Conta {
     public void setLimite(double limite) {
         this.limite = limite;
     }
+
+    @Override
+    public String gerarExtrato() {
+        String texto = "";
+
+        texto = super.gerarExtrato();
+
+        texto += " Limite: " + limite;
+
+        return texto;
+    }
+
 }

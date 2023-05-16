@@ -94,7 +94,7 @@ public class Banco {
         String relatorio = "";
 
         for (Conta aux : contas) {
-            relatorio = aux.mostrarSaldo() + "\n";
+            relatorio = aux.gerarExtrato() + "\n";
         }
 
         return relatorio;
